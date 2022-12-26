@@ -1,18 +1,30 @@
 #include <iostream>
-#include <cmath>
+#include <algorithm>
 using namespace std;
 
 int main() {
-	int n;
-	int sum = 0, remainder;;
-	cin >> n;
-	int temp = pow(10, n - 1);
-	int arr[10], n_arr[10];
+    int num;
+    cin >> num;
+    int arr[50] = {};
+    bool flag = true;
+    for (int i = 0; i < num; i++) {
+        cin >> arr[i];
+    }
 
-	for (int i = 0; i < n; i++) {
-		cin >> arr[i];
-		sum += arr[i] * temp;
-		temp /= 10;
-	}
-	sum ++;
+    reverse(arr, arr + num);
+    
+    for (int i = 0; i < num; i++) {
+        if (arr[i] < 9) {
+            arr[i]++;
+            flag = false;
+            break;
+        }
+        else {
+            arr[i] = 0;
+        }
+    }
+    if (flag) cout << 1 << " ";
+    for (int i = num - 1; i >= 0; i--) {
+        cout << arr[i] << " \n"[i == 0];
+    }
 }
